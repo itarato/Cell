@@ -5,11 +5,16 @@ Cell simulation.
 from cell import Cell
 
 def simpleInstatiationSimulation():
-  for i in range(7): print((Cell()).__repr__)
+  c = Cell()
+  print(c)
+  print(c.__repr__)
 
-  # print(Cell.instances)
+def timeLapse():
+  while True:
+    pass
 
 if __name__ == '__main__':
   print("Cell simulation")
 
-  simpleInstatiationSimulation()
+  # simpleInstatiationSimulation()
+  timeLapse()
