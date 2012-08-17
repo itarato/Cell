@@ -73,9 +73,10 @@ class Cell(object):
       child_cell = Cell()
       self.stage = CellStage.G0
 
-  def iterateCulture(_class):
-    _class.iterationNumber += 1
 
-    for cell in _class.instances:
-      print('Iteration: ')
-      cell.reactOnTime()
+def iterateCulture():
+  Cell.iterationNumber += 1
+  print('Iteration %d. for %d cells' % (Cell.iterationNumber, len(Cell.instances)))
+
+  for cell in Cell.instances:
+    cell.reactOnTime()
