@@ -25,6 +25,8 @@ class Cell(object):
   stage = CellStage.G0
   stageProgress = 0 # 0 - 1
 
+  iterationNumber = 0
+
   """
   Constructor shouldn't be called directly. A cell cannot be just created.
   """
@@ -42,6 +44,8 @@ class Cell(object):
     self.dna = dna
     self.type = type
 
+    self.iterationNumber = 1
+
   def __repr__(self):
     return 'Cell %d:\nType: %s\nStage: %s\n' % \
     (
@@ -54,6 +58,8 @@ class Cell(object):
     return '<%s [%d]>' % (self.__class__.__name__, self.serial)
 
   def reactOnTime(self):
+    self.iterationNumber += 1
+
     if self.stage == CellStage.G0:
       self.stage = CellStage.G1
     elif self.stage == CellStage.G1:
@@ -63,5 +69,13 @@ class Cell(object):
     elif self.stage == CellStage.G2:
       self.stage = CellStage.M
     else:
-      Cell()
+      # @todo copy genetic data properly
+      child_cell = Cell()
       self.stage = CellStage.G0
+
+  def iterateCulture(_class):
+    _class.iterationNumber += 1
+
+    for cell in _class.instances:
+      print('Iteration: ')
+      cell.reactOnTime()
